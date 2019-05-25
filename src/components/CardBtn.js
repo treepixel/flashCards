@@ -3,11 +3,11 @@ import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 export default function CardBtn({ action, type }) {
   const getImage = type => {
-    let image = require('../assets/icon-correct.png');
+    let image = require('../../assets/icon-correct.png');
     let style = { width: 35, height: 27 };
 
     if (type === 'error') {
-      image = require('../assets/icon-incorrect.png');
+      image = require('../../assets/icon-incorrect.png');
       style = { width: 25, height: 25 };
     }
 

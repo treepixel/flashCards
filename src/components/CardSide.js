@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import CardBtn from './CardBtn';
 
-export default function CardSide({ text, flip, side }) {
+export default function CardSide({ text, side }) {
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.card} onPress={flip}>
+    <View style={styles.container}>
       <View style={styles.areaText}>
         <Text style={styles.label}>{text}</Text>
       </View>
@@ -14,24 +14,15 @@ export default function CardSide({ text, flip, side }) {
           <CardBtn type="error" />
         </View>
       )}
-    </TouchableOpacity>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {
-    width: '100%',
-    height: '100%',
+  container: {
+    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FFF',
-    borderRadius: 20,
-    shadowColor: 'rgba(0,0,0,0.5)',
-    shadowOffset: {
-      width: 2,
-      height: 4
-    },
-    shadowOpacity: 0.5
+    alignItems: 'center'
   },
   areaText: {
     flex: 2,

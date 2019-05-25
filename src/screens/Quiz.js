@@ -1,41 +1,87 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import Swiper from 'react-native-deck-swiper';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import LogoTitle from '../components/LogoTitle';
+import Card from '../components/Card';
 
-class Quiz extends Component {
+// demo purposes only
+function* range(start, end) {
+  for (let i = start; i <= end; i++) {
+    yield i;
+  }
+}
+
+export default class DeckSwiper extends Component {
   static navigationOptions = {
     headerTitle: <LogoTitle title="Quiz" />
+  };
+
+  state = {
+    cards: [...range(1, 5)],
+    swipedAllCards: false,
+    swipeDirection: '',
+    cardIndex: 0
+  };
+
+  renderCard = (card, index) => {
+    return <Card />;
+  };
+
+  onSwipedAllCards = () => {
+    this.setState({
+      swipedAllCards: true
+    });
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.scoreBoard}>
-          <View style={styles.score}>
-            <Image
-              style={styles.scoreImg}
-              source={require('../../assets/trophy.png')}
-            />
-            <Text style={styles.scoreText}>5</Text>
+        <Swiper
+          ref={swiper => {
+            this.swiper = swiper;
+          }}
+          cards={this.state.cards}
+          cardIndex={this.state.cardIndex}
+          renderCard={this.renderCard}
+          onSwipedAll={this.onSwipedAllCards}
+          backgroundColor={'#3c2157'}
+          stackSize={3}
+          pointerEvents="box-none"
+          cardVerticalMargin={100}
+          stackAnimationFriction={100}
+          disableBottomSwipe
+          disableRightSwipe
+          disableTopSwipe
+        >
+          <View style={styles.containerScore}>
+            <View style={styles.scoreBoard}>
+              <View style={styles.score}>
+                <Image
+                  style={styles.scoreImg}
+                  source={require('../../assets/trophy.png')}
+                />
+                <Text style={styles.scoreText}>5</Text>
+              </View>
+              <Text style={styles.scoreText}>2/15</Text>
+            </View>
+            <View style={styles.title}>
+              <Text style={styles.titleText}>Framework Spring Boot</Text>
+            </View>
           </View>
-          <Text style={styles.scoreText}>2/15</Text>
-        </View>
-        <View style={styles.title}>
-          <Text style={styles.titleText}>Framework Spring Boot</Text>
-        </View>
+        </Swiper>
       </View>
     );
   }
 }
 
-export default Quiz;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#3c2157',
-    padding: 30
+    alignItems: 'center'
+  },
+  containerScore: {
+    paddingHorizontal: 20,
+    marginTop: 20
   },
   scoreBoard: {
     flexDirection: 'row',
@@ -59,29 +105,12 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: '#FF3366',
     borderRadius: 50,
-    marginVertical: 20,
+    marginVertical: 10,
     justifyContent: 'center',
     alignItems: 'center'
   },
   titleText: {
     fontFamily: 'yantramanav-black',
     color: '#fff'
-  },
-  content: {
-    flex: 5,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  card: {
-    width: 320,
-    height: 470,
-    backgroundColor: 'transparent',
-    borderRadius: 5,
-    shadowColor: 'rgba(0,0,0,0.5)',
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.5
   }
 });
