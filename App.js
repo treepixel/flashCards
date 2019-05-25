@@ -1,9 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import FlashStatusBar from './components/FlashStatusBar';
-import ListDecks from './components/ListDecks';
+import MainNavigator from './src/routes';
 import { AppLoading } from 'expo';
-import cacheAssetsAsync from './utils/cacheAssetsAsync';
+import cacheAssetsAsync from './src/utils/cacheAssetsAsync';
 
 export default class App extends React.Component {
   state = {
@@ -34,27 +32,9 @@ export default class App extends React.Component {
     const { appIsReady } = this.state;
 
     if (appIsReady) {
-      return (
-        <View style={styles.container}>
-          <FlashStatusBar />
-          <ListDecks />
-        </View>
-      );
+      return <MainNavigator />;
     } else {
       return <AppLoading />;
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#3c2157'
-  },
-  content: {
-    flex: 1,
-    backgroundColor: '#FBFBFB',
-    borderTopRightRadius: 60
-  }
-});

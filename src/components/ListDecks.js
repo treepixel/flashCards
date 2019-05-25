@@ -7,6 +7,7 @@ class ListDecks extends Component {
   renderItem = ({ item }) => {
     return <DeckItem {...item} />;
   };
+
   render() {
     const decks = getDecks();
     return (

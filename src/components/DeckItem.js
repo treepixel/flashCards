@@ -1,9 +1,13 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-export default function DeckItem({ title, score, cards }) {
+const DeckItem = ({ title, score, cards, navigation }) => {
   return (
-    <TouchableOpacity style={{ marginVertical: 15 }}>
+    <TouchableOpacity
+      style={{ marginVertical: 15 }}
+      onPress={() => navigation.navigate('ViewDeck')}
+    >
       <View style={styles.item}>
         <View style={styles.cards}>
           <Text style={styles.numberCards}>{cards}</Text>
@@ -13,7 +17,9 @@ export default function DeckItem({ title, score, cards }) {
       </View>
     </TouchableOpacity>
   );
-}
+};
+
+export default withNavigation(DeckItem);
 
 const styles = StyleSheet.create({
   item: {
