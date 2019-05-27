@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Swiper from 'react-native-deck-swiper';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import Swiper from 'react-native-deck-swiper';
 import LogoTitle from '../components/LogoTitle';
 import Card from '../components/Card';
+import QuizResult from '../components/QuizResult';
 
 // demo purposes only
 function* range(start, end) {
@@ -11,29 +12,74 @@ function* range(start, end) {
   }
 }
 
-export default class DeckSwiper extends Component {
+export default class Quiz extends Component {
   static navigationOptions = {
     headerTitle: <LogoTitle title="Quiz" />
   };
 
   state = {
-    cards: [...range(1, 5)],
-    swipedAllCards: false,
-    swipeDirection: '',
+    isQuizFinished: false,
+    cards: [],
+    correctAnswers: 0,
     cardIndex: 0
   };
 
+  componentDidMount() {
+    this.setState(() => ({ cards: [...range(1, 2)] }));
+  }
+
   renderCard = (card, index) => {
-    return <Card />;
+    return <Card onAnswer={this.handleAnswer} />;
   };
 
-  onSwipedAllCards = () => {
+  swipedCard = () => {
+    const { cardIndex, cards } = this.state;
+    if (cardIndex + 1 < cards.length) {
+      this.setState(prevState => ({
+        cardIndex: prevState.cardIndex + 1
+      }));
+    }
+  };
+
+  handleAnswer = answer => {
+    const { cardIndex, cards } = this.state;
+
+    this.swiper.swipeLeft();
+
+    if (answer === 'correct') {
+      this.setState(prevState => ({
+        correctAnswers: prevState.correctAnswers + 1
+      }));
+    }
+
+    if (cardIndex + 1 >= cards.length) {
+      this.setState(prevState => ({
+        isQuizFinished: true
+      }));
+    }
+  };
+
+  handleResetQuiz = () => {
     this.setState({
-      swipedAllCards: true
+      isQuizFinished: false,
+      correctAnswers: 0,
+      cardIndex: 0
     });
   };
 
   render() {
+    const { correctAnswers, isQuizFinished, cardIndex, cards } = this.state;
+
+    if (isQuizFinished) {
+      return (
+        <QuizResult
+          correctAnswers={correctAnswers}
+          cards={cards.length}
+          onResetQuiz={this.handleResetQuiz}
+        />
+      );
+    }
+
     return (
       <View style={styles.container}>
         <Swiper
@@ -42,14 +88,15 @@ export default class DeckSwiper extends Component {
           }}
           cards={this.state.cards}
           cardIndex={this.state.cardIndex}
+          onSwiped={this.swipedCard}
           renderCard={this.renderCard}
-          onSwipedAll={this.onSwipedAllCards}
           backgroundColor={'#3c2157'}
           stackSize={3}
           pointerEvents="box-none"
           cardVerticalMargin={100}
           stackAnimationFriction={100}
           disableBottomSwipe
+          disableLeftSwipe
           disableRightSwipe
           disableTopSwipe
         >
@@ -60,9 +107,11 @@ export default class DeckSwiper extends Component {
                   style={styles.scoreImg}
                   source={require('../../assets/trophy.png')}
                 />
-                <Text style={styles.scoreText}>5</Text>
+                <Text style={styles.scoreText}>{correctAnswers}</Text>
               </View>
-              <Text style={styles.scoreText}>2/15</Text>
+              <Text style={styles.scoreText}>
+                {cardIndex + 1}/{cards.length}
+              </Text>
             </View>
             <View style={styles.title}>
               <Text style={styles.titleText}>Framework Spring Boot</Text>

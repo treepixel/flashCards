@@ -1,12 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-export default function CardBtn({ action, type }) {
-  const getImage = type => {
+export default function BtnAnswer({ onPress, type }) {
+  getImage = type => {
     let image = require('../../assets/icon-correct.png');
     let style = { width: 35, height: 27 };
 
-    if (type === 'error') {
+    if (type === 'incorrect') {
       image = require('../../assets/icon-incorrect.png');
       style = { width: 25, height: 25 };
     }
@@ -18,11 +18,11 @@ export default function CardBtn({ action, type }) {
     <TouchableOpacity
       style={[
         styles.btn,
-        { borderColor: type === 'success' ? '#2AC940' : '#FF3366' }
+        { borderColor: type === 'correct' ? '#2AC940' : '#FF3366' }
       ]}
-      onPress={action}
+      onPress={() => onPress(type)}
     >
-      {getImage(type)}
+      {this.getImage(type)}
     </TouchableOpacity>
   );
 }

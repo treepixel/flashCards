@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import CardBtn from './CardBtn';
+import BtnAnswer from './BtnAnswer';
 
-export default function CardSide({ text, side }) {
+export default function CardSide({ text, side, action }) {
   return (
     <View style={styles.container}>
       <View style={styles.areaText}>
@@ -10,8 +10,8 @@ export default function CardSide({ text, side }) {
       </View>
       {side === 'behind' && (
         <View style={styles.areaButtons}>
-          <CardBtn type="success" />
-          <CardBtn type="error" />
+          <BtnAnswer type="correct" onPress={action} />
+          <BtnAnswer type="incorrect" onPress={action} />
         </View>
       )}
     </View>

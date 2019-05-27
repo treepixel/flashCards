@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   TouchableWithoutFeedback,
   Dimensions
@@ -14,6 +13,7 @@ const screenHeight = Dimensions.get('window').height * 0.7;
 
 class Card extends Component {
   render() {
+    const { onAnswer } = this.props;
     return (
       <CardFlip style={styles.cardContainer} ref={card => (this.card = card)}>
         <TouchableWithoutFeedback onPress={() => this.card.flip()}>
@@ -23,7 +23,7 @@ class Card extends Component {
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => this.card.flip()}>
           <View style={styles.card}>
-            <CardSide text="CD" side="behind" />
+            <CardSide text="CD" side="behind" action={onAnswer} />
           </View>
         </TouchableWithoutFeedback>
       </CardFlip>
