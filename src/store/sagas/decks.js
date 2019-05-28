@@ -1,7 +1,11 @@
 import { call, put } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 
-import { retrieveDecksRequest, retrieveDecksSuccess } from '../actions';
+import {
+  retrieveDecksRequest,
+  retrieveDecksSuccess,
+  addDeckSuccess
+} from '../actions';
 import { initialData } from '../../utils/initialData';
 
 const KEY = '@FlashcardsReactND:decks';
@@ -35,4 +39,24 @@ export function* retrieveDecks() {
 
     yield put(retrieveDecksSuccess(decks));
   } catch (err) {}
+}
+
+export function* addDeck(action) {
+  const deck = action.payload.data;
+  const { id } = deck;
+
+  try {
+    const data = yield call([AsyncStorage, 'getItem'], KEY);
+    const decks = JSON.parse(data) || {};
+
+    yield call(
+      [AsyncStorage, 'setItem'],
+      KEY,
+      JSON.stringify({ ...decks, [id]: { ...deck } })
+    );
+
+    yield put(addDeckSuccess(deck));
+  } catch (e) {
+    console.log(e);
+  }
 }
