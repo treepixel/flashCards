@@ -4,6 +4,7 @@ import ViewDeck from '../screens/ViewDeck';
 import NewDeck from '../screens/NewDeck';
 import NewCard from '../screens/NewCard';
 import Quiz from '../screens/Quiz';
+import { primaryColor, white } from '../utils/colors';
 
 export default createAppContainer(
   createStackNavigator(
@@ -18,9 +19,14 @@ export default createAppContainer(
       initialRouteName: 'Home',
       defaultNavigationOptions: {
         headerStyle: {
-          backgroundColor: '#3c2157'
+          backgroundColor: primaryColor,
+          shadowOpacity: 0,
+          shadowOffset: { height: 0, width: 0 },
+          shadowRadius: 0,
+          borderBottomWidth: 0,
+          elevation: 0
         },
-        headerTintColor: '#fff',
+        headerTintColor: white,
         headerTitleStyle: {
           fontFamily: 'yantramanav-black',
           fontSize: 20

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { secondColor, purple, grey, greyDark } from '../utils/colors';
 
 class FloatingLabelInput extends Component {
   state = {
@@ -14,14 +15,14 @@ class FloatingLabelInput extends Component {
     const { isFocused } = this.state;
     const { value } = this.props;
     return (
-      <View style={{ paddingTop: 18, width: '100%', marginVertical: 20 }}>
+      <View style={styles.container}>
         <Text
           style={[
             styles.label,
             {
               top: !isFocused && !value ? 18 : 0,
               fontSize: !isFocused && !value ? 18 : 14,
-              color: !isFocused ? '#aaa' : '#FF3366'
+              color: !isFocused ? grey : secondColor
             }
           ]}
         >
@@ -31,7 +32,7 @@ class FloatingLabelInput extends Component {
           {...props}
           style={[
             styles.text,
-            { borderBottomColor: !isFocused ? '#555' : '#FF3366' }
+            { borderBottomColor: !isFocused ? greyDark : secondColor }
           ]}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
@@ -44,6 +45,11 @@ class FloatingLabelInput extends Component {
 export default FloatingLabelInput;
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 18,
+    width: '100%',
+    marginVertical: 20
+  },
   label: {
     position: 'absolute',
     left: 0,
@@ -53,7 +59,7 @@ const styles = StyleSheet.create({
     height: 30,
     fontSize: 18,
     fontFamily: 'yantramanav-black',
-    color: '#68126C',
+    color: purple,
     borderBottomWidth: 1
   }
 });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import { white } from '../utils/colors';
 
 const BtnAddDeck = ({ navigation }) => {
   return (
@@ -20,13 +21,13 @@ export default withNavigation(BtnAddDeck);
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: '#fff',
+    backgroundColor: white,
     width: 40,
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
-    marginRight: 10
+    marginRight: 20
   },
   img: {
     width: 15,

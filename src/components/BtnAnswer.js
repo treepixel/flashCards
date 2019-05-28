@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { secondColor, green } from '../utils/colors';
 
 export default function BtnAnswer({ onPress, type }) {
   getImage = type => {
@@ -18,7 +19,7 @@ export default function BtnAnswer({ onPress, type }) {
     <TouchableOpacity
       style={[
         styles.btn,
-        { borderColor: type === 'correct' ? '#2AC940' : '#FF3366' }
+        { borderColor: type === 'correct' ? green : secondColor }
       ]}
       onPress={() => onPress(type)}
     >
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     width: 80,
     height: 80,
-    borderColor: '#FF3366',
+    borderColor: secondColor,
     justifyContent: 'center',
     alignItems: 'center'
   }

@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import CardFlip from 'react-native-card-flip';
 import CardSide from './CardSide';
+import { white } from '../utils/colors';
 
 const screenWidth = Dimensions.get('window').width * 0.9;
 const screenHeight = Dimensions.get('window').height * 0.7;
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: white,
     elevation: 4,
     shadowRadius: 10,
     shadowColor: 'rgba(0,0,0,0.5)',

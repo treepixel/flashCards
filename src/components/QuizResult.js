@@ -4,6 +4,7 @@ import { withNavigation } from 'react-navigation';
 import LottieAnimation from '../components/LottieAnimation';
 import congratulation from '../../assets/trophy.json';
 import dontworry from '../../assets/dino.json';
+import { primaryColor, secondColor, white } from '../utils/colors';
 
 const QuizResult = ({ correctAnswers, cards, onResetQuiz, navigation }) => {
   const SCORE = parseInt((correctAnswers / cards) * 100);
@@ -57,36 +58,36 @@ const styles = StyleSheet.create({
   containerResult: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#3c2157'
+    backgroundColor: primaryColor
   },
   boxTitle: {
-    backgroundColor: '#FF3366',
+    backgroundColor: secondColor,
     borderRadius: 30,
     paddingVertical: 5,
     paddingHorizontal: 20,
     marginVertical: 5
   },
   resultTitle: {
-    color: '#fff',
+    color: white,
     fontFamily: 'yantramanav-black',
     fontSize: 30
   },
   resultSubTitle: {
-    color: '#fff',
+    color: white,
     fontFamily: 'yantramanav-thin',
     fontSize: 20
   },
   textScore: {
     fontFamily: 'yantramanav-black',
     fontSize: 26,
-    color: '#fff',
+    color: white,
     marginTop: 30,
     marginBottom: 5
   },
   scoreResult: {
     fontFamily: 'yantramanav-thin',
     fontSize: 60,
-    color: '#fff'
+    color: white
   },
   resultButtons: {
     flexDirection: 'row',
@@ -101,6 +102,6 @@ const styles = StyleSheet.create({
     margin: 20,
     borderRadius: 100,
     borderWidth: 1,
-    borderColor: '#fff'
+    borderColor: white
   }
 });

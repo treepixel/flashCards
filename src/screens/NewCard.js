@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
+import LogoTitle from '../components/LogoTitle';
+import FloatingLabelInput from '../components/FloatingLabelInput';
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
   StyleSheet
 } from 'react-native';
-import LogoTitle from '../components/LogoTitle';
-import FloatingLabelInput from '../components/FloatingLabelInput';
+import {
+  primaryColor,
+  secondColor,
+  white,
+  purple,
+  pink
+} from '../utils/colors';
 
 class NewCard extends Component {
   static navigationOptions = {
@@ -49,9 +55,7 @@ class NewCard extends Component {
               styles.btn,
               {
                 backgroundColor:
-                  question.length > 1 && answer.length > 1
-                    ? '#FF3366'
-                    : '#F2ADBE'
+                  question.length > 1 && answer.length > 1 ? secondColor : pink
               }
             ]}
             activeOpacity={question.length > 1 && answer.length > 1 ? 0.5 : 1}
@@ -71,11 +75,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#3c2157'
+    backgroundColor: primaryColor
   },
   content: {
     flex: 1,
-    backgroundColor: '#FBFBFB',
+    backgroundColor: white,
     borderTopRightRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'yantramanav-thin',
-    color: '#FF3366',
+    color: secondColor,
     fontSize: 36,
     textAlign: 'center',
     lineHeight: 36
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'yantramanav-black',
     fontSize: 18,
-    color: '#68126C',
+    color: purple,
     marginVertical: 10
   },
   btn: {
@@ -108,7 +112,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontFamily: 'yantramanav-thin',
-    color: '#fff',
+    color: white,
     fontSize: 20
   }
 });

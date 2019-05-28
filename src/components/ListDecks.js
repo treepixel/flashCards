@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import DeckItem from './DeckItem';
 import getDecks from '../utils/decks';
+import { secondColor, white } from '../utils/colors';
 
 class ListDecks extends Component {
   renderItem = ({ item }) => {
@@ -28,7 +29,7 @@ export default ListDecks;
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    backgroundColor: '#FBFBFB',
+    backgroundColor: white,
     borderTopRightRadius: 60,
     paddingTop: 20,
     justifyContent: 'flex-start',
@@ -36,12 +37,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'yantramanav-thin',
-    color: '#FF3366',
+    color: secondColor,
     fontSize: 20,
     marginBottom: 20
   },
   listDecks: {
     width: '100%',
-    paddingHorizontal: 30
+    paddingHorizontal: 20
   }
 });

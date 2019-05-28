@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import BtnAnswer from './BtnAnswer';
+import { secondColor } from '../utils/colors';
 
 export default function CardSide({ text, side, action }) {
   return (
@@ -10,8 +11,8 @@ export default function CardSide({ text, side, action }) {
       </View>
       {side === 'behind' && (
         <View style={styles.areaButtons}>
-          <BtnAnswer type="correct" onPress={action} />
           <BtnAnswer type="incorrect" onPress={action} />
+          <BtnAnswer type="correct" onPress={action} />
         </View>
       )}
     </View>
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 36,
     fontFamily: 'yantramanav-thin',
-    color: '#FF3366',
+    color: secondColor,
     textAlign: 'center'
   },
   areaButtons: {

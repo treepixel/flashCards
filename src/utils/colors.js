@@ -1,0 +1,10 @@
+export const primaryColor = '#3C2157';
+export const secondColor = '#FF3366';
+export const white = '#fff';
+export const purple = '#68126C';
+export const purpleLight = '#78559B';
+export const green = '#2AC940';
+export const grey = '#aaa';
+export const greyDark = '#555';
+export const pink = '#F2ADBE';
+export const blue = '#3399FF';

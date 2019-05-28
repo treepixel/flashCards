@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import { white } from '../utils/colors';
 
 export default function LogoTitle({ title }) {
   return (
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     marginLeft: 15
   },
   txtBrand: {
-    color: '#fff',
+    color: white,
     marginLeft: 10,
     fontFamily: 'yantramanav-black',
     fontSize: 20

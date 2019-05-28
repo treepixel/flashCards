@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import { secondColor, white, purple, grey } from '../utils/colors';
 
 const DeckItem = ({ title, score, cards, navigation }) => {
   return (
@@ -25,18 +26,19 @@ const styles = StyleSheet.create({
   item: {
     borderRadius: 40,
     borderWidth: 0.8,
-    borderColor: '#B99CD7',
+    borderColor: grey,
     justifyContent: 'center',
     alignItems: 'center',
     paddingVertical: 17,
-    position: 'relative'
+    position: 'relative',
+    marginVertical: -3
   },
   cards: {
     position: 'absolute',
     zIndex: 2,
     width: 30,
     height: 30,
-    backgroundColor: '#FF3366',
+    backgroundColor: secondColor,
     top: -5,
     right: 10,
     borderRadius: 100,
@@ -45,16 +47,16 @@ const styles = StyleSheet.create({
   },
   numberCards: {
     fontSize: 10,
-    color: '#fff'
+    color: white
   },
   title: {
     fontFamily: 'yantramanav-black',
     fontSize: 20,
-    color: '#68126C'
+    color: purple
   },
   score: {
     fontFamily: 'yantramanav-thin',
     fontSize: 16,
-    color: '#FF3366'
+    color: secondColor
   }
 });

@@ -4,6 +4,7 @@ import Swiper from 'react-native-deck-swiper';
 import LogoTitle from '../components/LogoTitle';
 import Card from '../components/Card';
 import QuizResult from '../components/QuizResult';
+import { secondColor, white, purple, purpleLight, primaryColor } from '../utils/colors';
 
 // demo purposes only
 function* range(start, end) {
@@ -90,7 +91,7 @@ export default class Quiz extends Component {
           cardIndex={this.state.cardIndex}
           onSwiped={this.swipedCard}
           renderCard={this.renderCard}
-          backgroundColor={'#3c2157'}
+          backgroundColor={primaryColor}
           stackSize={3}
           pointerEvents="box-none"
           cardVerticalMargin={100}
@@ -147,12 +148,12 @@ const styles = StyleSheet.create({
   },
   scoreText: {
     fontFamily: 'yantramanav-black',
-    color: '#fff'
+    color: white
   },
   title: {
     width: '100%',
     padding: 5,
-    backgroundColor: '#FF3366',
+    backgroundColor: secondColor,
     borderRadius: 50,
     marginVertical: 10,
     justifyContent: 'center',
@@ -160,6 +161,6 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontFamily: 'yantramanav-black',
-    color: '#fff'
+    color: white
   }
 });
