@@ -4,16 +4,10 @@ import Swiper from 'react-native-deck-swiper';
 import LogoTitle from '../components/LogoTitle';
 import Card from '../components/Card';
 import QuizResult from '../components/QuizResult';
-import { secondColor, white, purple, purpleLight, primaryColor } from '../utils/colors';
+import { secondColor, white, primaryColor } from '../utils/colors';
+import { connect } from 'react-redux';
 
-// demo purposes only
-function* range(start, end) {
-  for (let i = start; i <= end; i++) {
-    yield i;
-  }
-}
-
-export default class Quiz extends Component {
+class Quiz extends Component {
   static navigationOptions = {
     headerTitle: <LogoTitle title="Quiz" />
   };
@@ -26,11 +20,12 @@ export default class Quiz extends Component {
   };
 
   componentDidMount() {
-    this.setState(() => ({ cards: [...range(1, 2)] }));
+    const { cards } = this.props;
+    this.setState(() => ({ cards }));
   }
 
-  renderCard = (card, index) => {
-    return <Card onAnswer={this.handleAnswer} />;
+  renderCard = card => {
+    return <Card card={card} onAnswer={this.handleAnswer} />;
   };
 
   swipedCard = () => {
@@ -70,6 +65,7 @@ export default class Quiz extends Component {
 
   render() {
     const { correctAnswers, isQuizFinished, cardIndex, cards } = this.state;
+    const { title } = this.props;
 
     if (isQuizFinished) {
       return (
@@ -115,7 +111,7 @@ export default class Quiz extends Component {
               </Text>
             </View>
             <View style={styles.title}>
-              <Text style={styles.titleText}>Framework Spring Boot</Text>
+              <Text style={styles.titleText}>{title}</Text>
             </View>
           </View>
         </Swiper>
@@ -123,6 +119,13 @@ export default class Quiz extends Component {
     );
   }
 }
+
+mapStateToProps = ({ decks }, { navigation }) => ({
+  title: decks[navigation.state.params.deckId].title,
+  cards: decks[navigation.state.params.deckId].cards
+});
+
+export default connect(mapStateToProps)(Quiz);
 
 const styles = StyleSheet.create({
   container: {

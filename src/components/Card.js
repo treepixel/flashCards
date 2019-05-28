@@ -14,17 +14,17 @@ const screenHeight = Dimensions.get('window').height * 0.7;
 
 class Card extends Component {
   render() {
-    const { onAnswer } = this.props;
+    const { onAnswer, card } = this.props;
     return (
       <CardFlip style={styles.cardContainer} ref={card => (this.card = card)}>
         <TouchableWithoutFeedback onPress={() => this.card.flip()}>
           <View style={styles.card}>
-            <CardSide text="AB" side="front" />
+            <CardSide text={card.question} side="front" />
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={() => this.card.flip()}>
           <View style={styles.card}>
-            <CardSide text="CD" side="behind" action={onAnswer} />
+            <CardSide text={card.answer} side="behind" action={onAnswer} />
           </View>
         </TouchableWithoutFeedback>
       </CardFlip>

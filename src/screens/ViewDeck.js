@@ -10,6 +10,7 @@ import {
   purple,
   blue
 } from '../utils/colors';
+import { connect } from 'react-redux';
 
 class ViewDeck extends Component {
   static navigationOptions = {
@@ -17,16 +18,19 @@ class ViewDeck extends Component {
   };
 
   render() {
-    const { navigation } = this.props;
+    const { deck, navigation } = this.props;
+
     return (
       <View style={styles.container}>
         <View style={styles.content}>
           <View style={styles.boxDeck}>
             <View style={styles.cards}>
-              <Text style={{ color: '#FF3366', fontSize: 12 }}>55</Text>
+              <Text style={{ color: '#FF3366', fontSize: 12 }}>
+                {deck.cards.length}
+              </Text>
             </View>
-            <Text style={styles.title}>Framework Spring Boot</Text>
-            <Text style={styles.score}>Max Score 80</Text>
+            <Text style={styles.title}>{deck.title}</Text>
+            <Text style={styles.score}>Max Score {deck.maxScore}</Text>
             <View style={styles.btnArea}>
               <TouchableOpacity
                 style={[styles.btn, styles.btnPink]}
@@ -48,7 +52,7 @@ class ViewDeck extends Component {
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.btn, styles.btnBlue]}
-                onPress={() => navigation.navigate('Quiz')}
+                onPress={() => navigation.navigate('Quiz', { deckId: deck.id })}
               >
                 <Image
                   style={{ width: 30, height: 40 }}
@@ -57,14 +61,19 @@ class ViewDeck extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          <ListCards />
+          {deck.cards.length >= 1 && <ListCards cards={deck.cards} />}
         </View>
       </View>
     );
   }
 }
 
-export default withNavigation(ViewDeck);
+mapStateTopProps = ({ decks }, { navigation }) => ({
+  deck: decks[navigation.state.params.deckId],
+  navigation
+});
+
+export default connect(mapStateTopProps)(withNavigation(ViewDeck));
 
 const styles = StyleSheet.create({
   container: {

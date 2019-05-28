@@ -11,7 +11,7 @@ import { secondColor, purple, purpleLight } from '../utils/colors';
 
 const screenWidth = Dimensions.get('window').width * 0.8;
 
-const CardItem = () => {
+const CardItem = ({ item }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.btn}>
@@ -21,9 +21,9 @@ const CardItem = () => {
         />
       </TouchableOpacity>
       <Text style={styles.title}>Question</Text>
-      <Text style={styles.text}>Does React Native work with Android?</Text>
+      <Text style={styles.text}>{item.question}</Text>
       <Text style={styles.title}>Answer</Text>
-      <Text style={styles.text}>Yes</Text>
+      <Text style={styles.text}>{item.answer}</Text>
     </View>
   );
 };
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   container: {
     marginLeft: 20,
     width: screenWidth,
-    height: 240,
+    height: 300,
     borderWidth: 1,
     borderColor: purpleLight,
     borderRadius: 20,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     height: 13
   },
   title: {
-    marginTop: 20,
+    marginTop: 10,
     fontFamily: 'yantramanav-black',
     fontSize: 18,
     color: purple

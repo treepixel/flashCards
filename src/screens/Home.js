@@ -4,13 +4,39 @@ import LogoTitle from '../components/LogoTitle';
 import ListDecks from '../components/ListDecks';
 import BtnAddDeck from '../components/BtnAddDeck';
 import { primaryColor, white, purpleLight } from '../utils/colors';
+import { connect } from 'react-redux';
+import { addInitialDataRequest } from '../store/actions';
 
 class Home extends Component {
   static navigationOptions = {
     headerTitle: <LogoTitle title="Flash Cards" />,
     headerRight: <BtnAddDeck />
   };
+
+  state = {
+    query: ''
+  };
+
+  componentDidMount() {
+    const { getInitialData } = this.props;
+    getInitialData();
+  }
+
+  search = text => {
+    this.setState({ query: text });
+  };
+
   render() {
+    const { decks } = this.props;
+    const { query } = this.state;
+
+    const filteredDecks =
+      query.length >= 2
+        ? decks.filter(item =>
+            item.title.toLowerCase().match(query.toLowerCase())
+          )
+        : decks;
+
     return (
       <View style={styles.container}>
         <View style={styles.containerFind}>
@@ -18,15 +44,28 @@ class Home extends Component {
             style={styles.icon}
             source={require('../../assets/magnifier.png')}
           />
-          <TextInput style={styles.findText} />
+          <TextInput
+            style={styles.findText}
+            onChangeText={this.search}
+            value={query}
+          />
         </View>
-        <ListDecks />
+        <ListDecks decks={filteredDecks} />
       </View>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({ decks: Object.values(state.decks) });
+
+const mapDispatchToPros = dispatch => ({
+  getInitialData: () => dispatch(addInitialDataRequest())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToPros
+)(Home);
 
 const styles = StyleSheet.create({
   container: {

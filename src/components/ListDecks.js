@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import DeckItem from './DeckItem';
-import getDecks from '../utils/decks';
 import { secondColor, white } from '../utils/colors';
 
 class ListDecks extends Component {
+  keyExtractor = item => item.id;
+
   renderItem = ({ item }) => {
-    return <DeckItem {...item} />;
+    return <DeckItem item={item} />;
   };
 
   render() {
-    const decks = getDecks();
+    const { decks } = this.props;
     return (
       <View style={styles.content}>
         <Text style={styles.title}>Decks</Text>
@@ -18,6 +19,7 @@ class ListDecks extends Component {
           data={decks}
           renderItem={this.renderItem}
           style={styles.listDecks}
+          keyExtractor={this.keyExtractor}
         />
       </View>
     );

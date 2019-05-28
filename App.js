@@ -2,6 +2,8 @@ import React from 'react';
 import MainNavigator from './src/routes';
 import { AppLoading } from 'expo';
 import cacheAssetsAsync from './src/utils/cacheAssetsAsync';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
 export default class App extends React.Component {
   state = {
@@ -32,7 +34,11 @@ export default class App extends React.Component {
     const { appIsReady } = this.state;
 
     if (appIsReady) {
-      return <MainNavigator />;
+      return (
+        <Provider store={store}>
+          <MainNavigator />
+        </Provider>
+      );
     } else {
       return <AppLoading />;
     }

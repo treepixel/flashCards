@@ -3,18 +3,18 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { secondColor, white, purple, grey } from '../utils/colors';
 
-const DeckItem = ({ title, score, cards, navigation }) => {
+const DeckItem = ({ item, navigation }) => {
   return (
     <TouchableOpacity
       style={{ marginVertical: 15 }}
-      onPress={() => navigation.navigate('ViewDeck')}
+      onPress={() => navigation.navigate('ViewDeck', { deckId: item.id })}
     >
       <View style={styles.item}>
         <View style={styles.cards}>
-          <Text style={styles.numberCards}>{cards}</Text>
+          <Text style={styles.numberCards}>{item.cards.length}</Text>
         </View>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.score}>Max score: {score}</Text>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.score}>Max score: {item.maxScore}</Text>
       </View>
     </TouchableOpacity>
   );

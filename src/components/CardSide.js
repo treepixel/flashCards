@@ -28,13 +28,15 @@ const styles = StyleSheet.create({
   areaText: {
     flex: 2,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 20
   },
   label: {
-    fontSize: 36,
+    fontSize: 26,
     fontFamily: 'yantramanav-thin',
     color: secondColor,
-    textAlign: 'center'
+    textAlign: 'center',
+    lineHeight: 26
   },
   areaButtons: {
     flex: 1,
