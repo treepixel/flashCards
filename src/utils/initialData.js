@@ -2,93 +2,87 @@ export const initialData = {
   '1a79eaff26b646e4a108a38894dfc3b6': {
     cards: [
       {
-        answer:
-          'Single source of truth, state is read-only, changes are made with pure functions',
+        answer: 'O preço dos computadores baixou recentemente',
         id: '8573792c4eb1439882230eaca334f24a',
-        question: 'What are the three principles that Redux follows?',
+        question: 'The price of computers has gone down recently',
         timestamp: 1548023594251
       },
       {
-        answer:
-          'In React, events are the triggered reactions to specific actions like mouse hover, mouse click, key press, etc.',
+        answer: 'Todos estavam conversando quando o navio começou a afundar.',
         id: '18fc004d1d8d44258a44dbd1a5194523',
-        question: 'What is an event in React?',
+        question: 'Everyone was talking when the ship started to go down.',
         timestamp: 1548023582072
       },
       {
-        answer:
-          'States are the source of data and must be kept as simple as possible. Basically, states are the objects which determine components rendering and behavior. They are mutable accessed via this.state',
+        answer: 'Eu gosto de ver o sol se pôr.',
         id: '164931a71e2b478fbf62c10e93bfe0ee',
-        question: 'What is state?',
+        question: 'I like to watch the sun go down.',
         timestamp: 1548023569984
       },
       {
-        answer: 'A JavaScript library for building user interfaces',
+        answer:
+          'O sistema computacional parou de funcionar por uma hora ontem à noite',
         id: '5835a048fb7b438c98820b1354ece8b2',
-        question: 'What is React?',
+        question: 'he computer system went down for an hour last night',
         timestamp: 1548023537397
       },
       {
-        answer:
-          'Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.',
+        answer: 'Ele chegou atrasado para a reunião',
         id: '978329ec06c341119bab532bb4ac8ebe',
-        question: 'What is components?',
+        question: 'He showed up late for the meeting',
         timestamp: 1548023526298
       },
       {
-        answer:
-          'React allows us to pass information to a Component using something called props (stands for properties)',
+        answer: 'Ele tirou a roupa e entrou no banho',
         id: '26f031e25e2c45cd8ce47b5be899a9fb',
-        question: 'What is “props”?',
+        question: 'He took off his clothes and got into the shower',
         timestamp: 1548023508746
       },
       {
-        answer:
-          'They are: render(), componentDidMount(), componentDidUpdate(), componentWillUnmount(), shouldComponentUpdate(), getDerivedStateFromProps(), getSnapshotBeforeUpdate()',
+        answer: 'O avião decolou no horário certo',
         id: '5bf913a0dd48445699384924af9ce55d',
-        question: 'What are the lifecycle methods in React?',
+        question: 'The plane took off on time',
         timestamp: 1548023491911
       },
       {
-        answer:
-          'Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the to give the elements a stable identity',
+        answer: 'Eu malho na minha bicicleta ergométrica',
         id: '058520ba0fb54372a45e5df803cfe9c9',
-        question: 'What are "Keys" in React?',
+        question: 'I work out on my stationary bike',
         timestamp: 1548023478158
       },
       {
-        answer:
-          'JSX is a shorthand for JavaScript XML. This is a type of file used by React which utilizes the expressiveness of JavaScript along with HTML like template syntax. ',
+        answer: 'Vou deixar vocês dois resolverem',
         id: '556d7584fd7942cbabce022823981e5f',
-        question: 'What is JSX?',
+        question: 'I’ll let you two work it out',
         timestamp: 1548023454954
       },
       {
-        answer:
-          ' Browsers can only read JavaScript objects but JSX in not a regular JavaScript object. Thus to enable a browser to read JSX, first, we need to transform JSX file into a JavaScript using JSX transformers like Babel and then pass it to the browser.',
+        answer: 'Nós precisamos calcular o custo total do projeto',
         id: 'fdaf2a6e2b3b4dcc8169c7591dcea6e5',
-        question: 'Why can’t browsers read JSX?',
+        question: 'We need to work out the total cost of the project',
         timestamp: 1548018963738
       }
     ],
     id: '1a79eaff26b646e4a108a38894dfc3b6',
     timestamp: 1547949042269,
-    title: 'React',
+    title: 'English Phrasal Verbs',
     maxScore: 80
   },
   '2bb838c3031c4d1a9730be95e7d2277e': {
     cards: [
       {
         answer:
-          'It is a predictable state container for JavaScript applications and is used for the entire applications state management. ',
+          'Functional programming is an essential concept in JavaScript (one of the two pillars of JavaScript). Several common functional utilities were added to JavaScript in ES5.',
         id: '0f0b21333165411e8d3079b3de009b9f',
-        question: 'What is Redux?',
+        question: 'What is functional programming?',
         timestamp: 1548023761647
       },
       {
-        answer: 'Action, reducer and store',
+        answer:
+          'Prototypal Inheritance: instances inherit directly from other objects. Instances are typically instantiated via factory functions or `Object.create()`. Instances may be composed from many different objects, allowing for easy selective inheritance.',
         id: '6f0ac60351774b0a887dbacfa2c7657f',
-        question: 'List down the components of Redux',
+        question:
+          'What is the difference between classical inheritance and prototypal inheritance?',
         timestamp: 1548023751543
       },
       {
@@ -128,37 +122,7 @@ export const initialData = {
     ],
     id: '2bb838c3031c4d1a9730be95e7d2277e',
     timestamp: 1548023647028,
-    title: 'Redux',
-    maxScore: 90
-  },
-  '99b1649e10e946c1aff4ae65033e291b': {
-    cards: [
-      {
-        answer:
-          'React Router is a powerful routing library built on top of React, which helps in adding new screens and flows to the application. This keeps the URL in sync with data that’s being displayed on the web page. ',
-        id: '882035c25a634f3fba0ae5b940ccaf8f',
-        question: 'What is React Router?',
-        timestamp: 1548023870106
-      },
-      {
-        answer:
-          'React Router v4 provides: <BrowserRouter>, <HashRouter> and <MemoryRouter>',
-        id: '8e44de3ab1be407ba0d1e0308b4617b9',
-        question: 'What are the <Router> components of React Router v4?',
-        timestamp: 1548023859189
-      },
-      {
-        answer:
-          'If you think of the history as an of visited locations, push() will add a new location to the and replace() will replace the current location in the with the new one.',
-        id: '42e97cb82776474c946cf1a0dfe66f3f',
-        question:
-          'What is the purpose of push() and replace() methods of history?',
-        timestamp: 1548023832694
-      }
-    ],
-    id: '99b1649e10e946c1aff4ae65033e291b',
-    timestamp: 1548023797490,
-    title: 'React Router',
+    title: 'FrontEnd Questions Interview',
     maxScore: 90
   }
 };
