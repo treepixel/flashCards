@@ -33,7 +33,6 @@ class ViewDeck extends Component {
         return false;
       }
     }
-
     return false;
   };
 
@@ -115,7 +114,7 @@ mapStateTopProps = ({ decks }, { navigation }) => ({
   navigation
 });
 
-mapDispatchToProps = (dispatch, { navigation }) => ({
+mapDispatchToProps = dispatch => ({
   deleteDeck: id => dispatch(deleteDeckRequest(id))
 });
 

@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
   },
   imgBrand: {
     width: 24,
-    height: 21.14,
-    marginTop: 5,
+    height: 22.55,
     marginLeft: 15
   },
   txtBrand: {

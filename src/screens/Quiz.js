@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
 import LogoTitle from '../components/LogoTitle';
 import Card from '../components/Card';
 import QuizResult from '../components/QuizResult';
-import { secondColor, white, primaryColor } from '../utils/colors';
+import ScoreBoard from '../components/ScoreBoard';
+import { primaryColor } from '../utils/colors';
 import { connect } from 'react-redux';
 
 class Quiz extends Component {
@@ -110,23 +111,12 @@ class Quiz extends Component {
           disableRightSwipe
           disableTopSwipe
         >
-          <View style={styles.containerScore}>
-            <View style={styles.scoreBoard}>
-              <View style={styles.score}>
-                <Image
-                  style={styles.scoreImg}
-                  source={require('../../assets/trophy.png')}
-                />
-                <Text style={styles.scoreText}>{correctAnswers}</Text>
-              </View>
-              <Text style={styles.scoreText}>
-                {cardIndex + 1}/{cards.length}
-              </Text>
-            </View>
-            <View style={styles.title}>
-              <Text style={styles.titleText}>{title}</Text>
-            </View>
-          </View>
+          <ScoreBoard
+            title={title}
+            cards={cards}
+            correctAnswers={correctAnswers}
+            cardIndex={cardIndex}
+          />
         </Swiper>
       </View>
     );
@@ -145,39 +135,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center'
-  },
-  containerScore: {
-    paddingHorizontal: 20,
-    marginTop: 20
-  },
-  scoreBoard: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  score: {
-    flexDirection: 'row'
-  },
-  scoreImg: {
-    width: 12,
-    height: 12,
-    marginRight: 10,
-    marginTop: 3
-  },
-  scoreText: {
-    fontFamily: 'yantramanav-black',
-    color: white
-  },
-  title: {
-    width: '100%',
-    padding: 5,
-    backgroundColor: secondColor,
-    borderRadius: 50,
-    marginVertical: 10,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  titleText: {
-    fontFamily: 'yantramanav-black',
-    color: white
   }
 });

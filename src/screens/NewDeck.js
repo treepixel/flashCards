@@ -33,6 +33,7 @@ class NewDeck extends Component {
 
   handleChange = text => this.setState(() => ({ title: text }));
   handleFocus = () => this.setState(() => ({ onFocused: true }));
+
   handleSubmit = () => {
     const { createDeck } = this.props;
     const id = generateUID();
