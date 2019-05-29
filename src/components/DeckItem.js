@@ -14,7 +14,7 @@ const DeckItem = ({ item, navigation }) => {
           <Text style={styles.numberCards}>{item.cards.length}</Text>
         </View>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.score}>Max score: {item.maxScore}</Text>
+        <Text style={styles.score}>Max score: {item.maxScore}%</Text>
       </View>
     </TouchableOpacity>
   );

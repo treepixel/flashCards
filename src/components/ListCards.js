@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import CardItem from './CardItem';
 import { secondColor } from '../utils/colors';
 
-const ListCards = ({ cards }) => {
+const ListCards = ({ cards, deckId }) => {
   keyExtractor = item => item.id;
 
   renderItem = ({ item }) => {
-    return <CardItem item={item} />;
+    return <CardItem item={item} deckId={deckId} />;
   };
 
   return (

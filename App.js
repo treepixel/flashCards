@@ -1,5 +1,6 @@
 import React from 'react';
 import MainNavigator from './src/routes';
+import NavigationService from './src/routes/NavigationService';
 import { AppLoading } from 'expo';
 import cacheAssetsAsync from './src/utils/cacheAssetsAsync';
 import { Provider } from 'react-redux';
@@ -36,7 +37,11 @@ export default class App extends React.Component {
     if (appIsReady) {
       return (
         <Provider store={store}>
-          <MainNavigator />
+          <MainNavigator
+            ref={navigatorRef => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
+          />
         </Provider>
       );
     } else {

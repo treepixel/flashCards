@@ -16,6 +16,10 @@ import {
   grey,
   pink
 } from '../utils/colors';
+import { withNavigation } from 'react-navigation';
+import { connect } from 'react-redux';
+import { addDeckRequest } from '../store/actions';
+import { generateUID } from '../utils/helpers';
 
 class NewDeck extends Component {
   static navigationOptions = {
@@ -30,8 +34,18 @@ class NewDeck extends Component {
   handleChange = text => this.setState(() => ({ title: text }));
   handleFocus = () => this.setState(() => ({ onFocused: true }));
   handleSubmit = () => {
-    if (this.state.title.length > 1) {
-      alert('Deck saved!');
+    const { createDeck } = this.props;
+    const id = generateUID();
+    const { title } = this.state;
+
+    if (title.length > 1) {
+      createDeck({
+        id,
+        title,
+        timestamp: Date.now(),
+        cards: [],
+        maxScore: 0
+      });
     }
   };
 
@@ -68,7 +82,14 @@ class NewDeck extends Component {
   }
 }
 
-export default NewDeck;
+mapDispatchToProps = dispatch => ({
+  createDeck: deck => dispatch(addDeckRequest(deck))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withNavigation(NewDeck));
 
 const styles = StyleSheet.create({
   container: {

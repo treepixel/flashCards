@@ -8,13 +8,18 @@ import {
   Dimensions
 } from 'react-native';
 import { secondColor, purple, purpleLight } from '../utils/colors';
+import { connect } from 'react-redux';
+import { deleteCardRequest } from '../store/actions';
 
 const screenWidth = Dimensions.get('window').width * 0.8;
 
-const CardItem = ({ item }) => {
+const CardItem = ({ item, deckId, deleteCard }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => deleteCard(item.id, deckId)}
+      >
         <Image
           style={styles.img}
           source={require('../../assets/garbage.png')}
@@ -28,7 +33,14 @@ const CardItem = ({ item }) => {
   );
 };
 
-export default CardItem;
+mapDispatchToProps = dispatch => ({
+  deleteCard: (id, deckId) => dispatch(deleteCardRequest(id, deckId))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CardItem);
 
 const styles = StyleSheet.create({
   container: {

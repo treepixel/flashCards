@@ -8,3 +8,4 @@ export const grey = '#aaa';
 export const greyDark = '#555';
 export const pink = '#F2ADBE';
 export const blue = '#3399FF';
+export const blueLight = '#C4DEF8';

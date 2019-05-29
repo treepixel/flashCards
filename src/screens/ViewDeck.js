@@ -2,23 +2,51 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import LogoTitle from '../components/LogoTitle';
 import ListCards from '../components/ListCards';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, HeaderBackButton } from 'react-navigation';
 import {
   primaryColor,
   secondColor,
   white,
   purple,
-  blue
+  blue,
+  blueLight
 } from '../utils/colors';
 import { connect } from 'react-redux';
+import { deleteDeckRequest } from '../store/actions';
 
 class ViewDeck extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
+    headerLeft: (
+      <HeaderBackButton
+        tintColor={white}
+        onPress={() => navigation.navigate('Home')}
+      />
+    ),
     headerTitle: <LogoTitle title="Deck" />
+  });
+
+  isCards = cards => {
+    if (cards) {
+      if (cards.length >= 1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    return false;
   };
 
   render() {
-    const { deck, navigation } = this.props;
+    const { deck, navigation, deleteDeck } = this.props;
+
+    if (!deck) {
+      return (
+        <View style={styles.container}>
+          <Text>No Deck Found</Text>
+        </View>
+      );
+    }
 
     return (
       <View style={styles.container}>
@@ -26,15 +54,15 @@ class ViewDeck extends Component {
           <View style={styles.boxDeck}>
             <View style={styles.cards}>
               <Text style={{ color: '#FF3366', fontSize: 12 }}>
-                {deck.cards.length}
+                {deck.cards ? deck.cards.length : 0}
               </Text>
             </View>
             <Text style={styles.title}>{deck.title}</Text>
-            <Text style={styles.score}>Max Score {deck.maxScore}</Text>
+            <Text style={styles.score}>Max Score {deck.maxScore}%</Text>
             <View style={styles.btnArea}>
               <TouchableOpacity
                 style={[styles.btn, styles.btnPink]}
-                onPress={() => navigation.navigate('Home')}
+                onPress={() => deleteDeck(deck.id)}
               >
                 <Image
                   style={{ width: 17, height: 24 }}
@@ -43,7 +71,9 @@ class ViewDeck extends Component {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.btn}
-                onPress={() => navigation.navigate('NewCard')}
+                onPress={() =>
+                  navigation.navigate('NewCard', { deckId: deck.id })
+                }
               >
                 <Image
                   style={styles.btnImg}
@@ -51,8 +81,18 @@ class ViewDeck extends Component {
                 />
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.btn, styles.btnBlue]}
-                onPress={() => navigation.navigate('Quiz', { deckId: deck.id })}
+                style={[
+                  styles.btn,
+                  {
+                    backgroundColor: this.isCards(deck.cards) ? blue : blueLight
+                  }
+                ]}
+                onPress={() =>
+                  this.isCards(deck.cards)
+                    ? navigation.navigate('Quiz', { deckId: deck.id })
+                    : null
+                }
+                activeOpacity={this.isCards(deck.cards) ? 0.5 : 1}
               >
                 <Image
                   style={{ width: 30, height: 40 }}
@@ -61,7 +101,9 @@ class ViewDeck extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          {deck.cards.length >= 1 && <ListCards cards={deck.cards} />}
+          {deck.cards && deck.cards.length >= 1 && (
+            <ListCards cards={deck.cards} deckId={deck.id} />
+          )}
         </View>
       </View>
     );
@@ -73,7 +115,14 @@ mapStateTopProps = ({ decks }, { navigation }) => ({
   navigation
 });
 
-export default connect(mapStateTopProps)(withNavigation(ViewDeck));
+mapDispatchToProps = (dispatch, { navigation }) => ({
+  deleteDeck: id => dispatch(deleteDeckRequest(id))
+});
+
+export default connect(
+  mapStateTopProps,
+  mapDispatchToProps
+)(withNavigation(ViewDeck));
 
 const styles = StyleSheet.create({
   container: {
@@ -130,9 +179,6 @@ const styles = StyleSheet.create({
   },
   btnPink: {
     backgroundColor: secondColor
-  },
-  btnBlue: {
-    backgroundColor: blue
   },
   btnImg: {
     width: 20,

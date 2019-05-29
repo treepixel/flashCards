@@ -16,7 +16,8 @@ class Quiz extends Component {
     isQuizFinished: false,
     cards: [],
     correctAnswers: 0,
-    cardIndex: 0
+    cardIndex: 0,
+    score: 0
   };
 
   componentDidMount() {
@@ -44,15 +45,21 @@ class Quiz extends Component {
 
     if (answer === 'correct') {
       this.setState(prevState => ({
-        correctAnswers: prevState.correctAnswers + 1
+        correctAnswers: prevState.correctAnswers + 1,
+        score: parseInt(((prevState.correctAnswers + 1) / cards.length) * 100)
       }));
     }
 
     if (cardIndex + 1 >= cards.length) {
-      this.setState(prevState => ({
-        isQuizFinished: true
-      }));
+      this.finishQuiz();
     }
+  };
+
+  finishQuiz = () => {
+    const { score } = this.state;
+    this.setState({
+      isQuizFinished: true
+    });
   };
 
   handleResetQuiz = () => {
@@ -64,14 +71,20 @@ class Quiz extends Component {
   };
 
   render() {
-    const { correctAnswers, isQuizFinished, cardIndex, cards } = this.state;
-    const { title } = this.props;
+    const {
+      correctAnswers,
+      isQuizFinished,
+      cardIndex,
+      cards,
+      score
+    } = this.state;
+    const { title, deckId } = this.props;
 
     if (isQuizFinished) {
       return (
         <QuizResult
-          correctAnswers={correctAnswers}
-          cards={cards.length}
+          score={score}
+          deckId={deckId}
           onResetQuiz={this.handleResetQuiz}
         />
       );
@@ -122,7 +135,8 @@ class Quiz extends Component {
 
 mapStateToProps = ({ decks }, { navigation }) => ({
   title: decks[navigation.state.params.deckId].title,
-  cards: decks[navigation.state.params.deckId].cards
+  cards: decks[navigation.state.params.deckId].cards,
+  deckId: navigation.state.params.deckId
 });
 
 export default connect(mapStateToProps)(Quiz);

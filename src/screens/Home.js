@@ -48,6 +48,7 @@ class Home extends Component {
             style={styles.findText}
             onChangeText={this.search}
             value={query}
+            placeholder="Type here to search cards"
           />
         </View>
         <ListDecks decks={filteredDecks} />

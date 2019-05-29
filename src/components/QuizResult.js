@@ -5,14 +5,26 @@ import LottieAnimation from '../components/LottieAnimation';
 import congratulation from '../../assets/trophy.json';
 import dontworry from '../../assets/dino.json';
 import { primaryColor, secondColor, white } from '../utils/colors';
+import { connect } from 'react-redux';
+import { maxScoreRequest } from '../store/actions';
 
-const QuizResult = ({ correctAnswers, cards, onResetQuiz, navigation }) => {
-  const SCORE = parseInt((correctAnswers / cards) * 100);
+const QuizResult = ({
+  score,
+  deckId,
+  setIfMaxScore,
+  onResetQuiz,
+  navigation
+}) => {
+  /*
+  while displaying the result, if the score was greater than 
+  the previous record, replace maxScore
+  */
+  setIfMaxScore(score, deckId);
 
   return (
     <View style={styles.containerResult}>
       <LottieAnimation
-        file={SCORE >= 60 ? congratulation : dontworry}
+        file={score >= 60 ? congratulation : dontworry}
         width={400}
         height={200}
         loop={true}
@@ -20,14 +32,14 @@ const QuizResult = ({ correctAnswers, cards, onResetQuiz, navigation }) => {
       />
       <View style={styles.boxTitle}>
         <Text style={styles.resultTitle}>
-          {SCORE >= 60 ? 'CONGRATULATIONS' : "DON'T WORRY"}
+          {score >= 60 ? 'CONGRATULATIONS' : "DON'T WORRY"}
         </Text>
       </View>
       <Text style={styles.resultSubTitle}>
-        {SCORE >= 60 ? 'You were awesome!' : 'Try again!'}
+        {score >= 60 ? 'You were awesome!' : 'Try again!'}
       </Text>
       <Text style={styles.textScore}>Your score was</Text>
-      <Text style={styles.scoreResult}>{SCORE}%</Text>
+      <Text style={styles.scoreResult}>{score}%</Text>
       <View style={styles.resultButtons}>
         <TouchableOpacity
           style={styles.resultBtn}
@@ -52,7 +64,14 @@ const QuizResult = ({ correctAnswers, cards, onResetQuiz, navigation }) => {
   );
 };
 
-export default withNavigation(QuizResult);
+mapDispatchToProps = dispatch => ({
+  setIfMaxScore: (score, deckId) => dispatch(maxScoreRequest(score, deckId))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withNavigation(QuizResult));
 
 const styles = StyleSheet.create({
   containerResult: {

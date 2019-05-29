@@ -15,6 +15,9 @@ import {
   purple,
   pink
 } from '../utils/colors';
+import { connect } from 'react-redux';
+import { addCardRequest } from '../store/actions';
+import { generateUID } from '../utils/helpers';
 
 class NewCard extends Component {
   static navigationOptions = {
@@ -28,9 +31,22 @@ class NewCard extends Component {
 
   handleQuestion = text => this.setState(() => ({ question: text }));
   handleAnswer = text => this.setState(() => ({ answer: text }));
+
   handleSubmit = () => {
-    if (this.state.question.length > 1 && this.state.answer.length > 1) {
-      alert('Card saved!');
+    const { question, answer } = this.state;
+    const { createCard, navigation } = this.props;
+    const id = generateUID();
+
+    if (question.length > 1 && answer.length > 1) {
+      createCard(
+        {
+          id,
+          question,
+          answer,
+          timestamp: Date.now()
+        },
+        navigation.state.params.deckId
+      );
     }
   };
 
@@ -69,7 +85,14 @@ class NewCard extends Component {
   }
 }
 
-export default NewCard;
+mapDispatchToProps = dispatch => ({
+  createCard: (card, deckId) => dispatch(addCardRequest(card, deckId))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(NewCard);
 
 const styles = StyleSheet.create({
   container: {
