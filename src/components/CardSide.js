@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import BtnAnswer from './BtnAnswer';
+import BtnCircle from './BtnCircle';
 import { secondColor } from '../utils/colors';
 
 export default function CardSide({ text, side, action }) {
@@ -11,8 +11,8 @@ export default function CardSide({ text, side, action }) {
       </View>
       {side === 'behind' && (
         <View style={styles.areaButtons}>
-          <BtnAnswer type="incorrect" onPress={action} />
-          <BtnAnswer type="correct" onPress={action} />
+          <BtnCircle type="incorrect" onPress={() => action('incorrect')} />
+          <BtnCircle type="correct" onPress={() => action('correct')} />
         </View>
       )}
     </View>
