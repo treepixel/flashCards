@@ -46,17 +46,12 @@ class ViewDeck extends Component {
             <Text style={styles.title}>{deck.title}</Text>
             <Text style={styles.score}>Max Score {deck.maxScore}%</Text>
             <View style={styles.btnArea}>
-              <BtnCircle
-                type="delete"
-                onPress={() => deleteDeck(deck.id)}
-                disabled={false}
-              />
+              <BtnCircle type="delete" onPress={() => deleteDeck(deck.id)} />
               <BtnCircle
                 type="add"
                 onPress={() =>
                   navigation.navigate('NewCard', { deckId: deck.id })
                 }
-                disabled={false}
               />
               <BtnCircle
                 type="quiz"

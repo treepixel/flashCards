@@ -18,7 +18,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.treepixel.flashcard"
+    },
+    "android": {
+      "package": "br.com.treepixel.flashcard"
+    },
+    "description": "Flash Cards: A React-Native application for Udacity Nano Degree in React",
+    "githubUrl": "https://github.com/treepixel/flashCards"
   }
 }
