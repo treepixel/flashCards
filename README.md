@@ -12,9 +12,7 @@ To get started, install [Expo](https://expo.io/learn) and follow the installatio
 
 ## Screens
 
-Android
---- | ---
-<img src="/docs/01-splash.jpg" alt="android-splash" height="400"/>
+<img src="/docs/01-splash.jpg" alt="android-splash" height="400"/> <img src="/docs/02-list.jpg" alt="android-splash" height="400"/> <img src="/docs/03-card.jpg" alt="android-splash" height="400"/> <img src="/docs/04-quiz.jpg" alt="android-splash" height="400"/> <img src="/docs/05-result1.jpg" alt="android-splash" height="400"/> <img src="/docs/06-result2.jpg" alt="android-splash" height="400"/>
 
 ## Installation and Running the Project
 
