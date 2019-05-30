@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, Image, StyleSheet } from 'react-native';
-import { secondColor, green, purple, blue, blueLight } from '../utils/colors';
+import { TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { secondColor, green, purple, blue } from '../utils/colors';
 import imgCorrect from '../../assets/icon-correct.png';
 import imgIncorrect from '../../assets/icon-incorrect.png';
 import imgDelete from '../../assets/garbage-white.png';
@@ -16,22 +16,29 @@ class BtnCircle extends Component {
     }
   }
 
-  borderColor = {
-    correct: green,
-    incorrect: secondColor,
-    quiz: 'transparent',
-    add: 'transparent',
-    delete: 'transparent'
+  btnStyle = {
+    correct: {
+      borderColor: green,
+      backgroundColor: 'transparent',
+      borderWidth: 1
+    },
+    incorrect: {
+      borderColor: secondColor,
+      backgroundColor: 'transparent',
+      borderWidth: 1
+    },
+    quiz: { borderColor: 'transparent', backgroundColor: blue, borderWidth: 0 },
+    add: {
+      borderColor: 'transparent',
+      backgroundColor: purple,
+      borderWidth: 0
+    },
+    delete: {
+      borderColor: 'transparent',
+      backgroundColor: secondColor,
+      borderWidth: 0
+    }
   };
-
-  backgroundColor = {
-    correct: 'transparent',
-    incorrect: 'transparent',
-    quiz: blue,
-    add: purple,
-    delete: secondColor
-  };
-  borderWidth = { correct: 1, incorrect: 1, quiz: 0, add: 0, delete: 0 };
 
   styles = StyleSheet.create({
     btn: {
@@ -41,9 +48,7 @@ class BtnCircle extends Component {
       height: 80,
       justifyContent: 'center',
       alignItems: 'center',
-      borderWidth: this.borderWidth[this.props.type],
-      borderColor: this.borderColor[this.props.type],
-      backgroundColor: this.backgroundColor[this.props.type]
+      ...this.btnStyle[this.props.type]
     }
   });
 
